@@ -1,0 +1,44 @@
+group 'spring-boot-app'
+version '1.0.0'
+
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+buildscript {
+
+    repositories {
+        mavenCentral()
+    }
+    
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE")
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+// executable on Unix-based systems using init.d
+// http://docs.spring.io/spring-boot/docs/current/reference/html/deployment-install.html
+springBoot {
+    executable = true
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web:1.4.0.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-jetty:1.4.0.RELEASE'
+    compile 'org.springframework.boot:spring-boot-actuator:1.4.0.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-data-mongodb:1.4.0.RELEASE'
+}
+
+configurations {
+    compile.exclude module: "spring-boot-starter-tomcat"
+}
